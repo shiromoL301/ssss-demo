@@ -6,6 +6,7 @@ const createWindow = () => {
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
+      worldSafeExecuteJavaScript: true,
       preload: path.join(__dirname, 'preload.js'),
     },
   })
@@ -14,6 +15,7 @@ const createWindow = () => {
     mainWindow.webContents.openDevTools({ mode: 'detach' })
   }
 
+  mainWindow.setMenu(null)
   mainWindow.loadFile('dist/index.html')
 }
 

@@ -1,6 +1,5 @@
-import { VFC } from 'react'
 import ReactDOM from 'react-dom'
 
-const App: VFC = () => <h1>Hello Electron!</h1>
+import { App } from './App'
 
 ReactDOM.render(<App />, document.getElementById('root'))
