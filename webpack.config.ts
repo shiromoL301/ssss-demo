@@ -1,72 +1,76 @@
-import path from "path";
+import path from 'path'
 
-import { Configuration } from "webpack";
-import HtmlWebpackPlugin from "html-webpack-plugin";
+import { Configuration } from 'webpack'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 
-const isDev = process.env.NODE_ENV === "development";
+const isDev = process.env.NODE_ENV === 'development'
 
 const base: Configuration = {
-  mode: isDev ? "development" : "production",
+  mode: isDev ? 'development' : 'production',
   node: {
     __dirname: false,
     __filename: false,
   },
   resolve: {
-    extensions: [".js", ".ts", ".jsx", ".tsx", ".json"],
+    extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
+    alias: {
+      '@': path.resolve(__dirname, 'src/'),
+    },
   },
   output: {
-    path: path.resolve(__dirname, "dist"),
-    publicPath: "./",
-    filename: "[name].js",
-    assetModuleFilename: "images/[name][ext]",
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: './',
+    filename: '[name].js',
+    assetModuleFilename: 'images/[name][ext]',
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: "ts-loader",
+        use: 'ts-loader',
       },
+      { test: /\.css$/, use: ['css-loader'] },
       {
         test: /\.(bmp|ico|gif|jpe?g|png|svg|ttf|eot|woff?2?)$/,
-        type: "asset/resource",
+        type: 'asset/resource',
       },
     ],
   },
-  devtool: isDev ? "inline-source-map" : false,
-};
+  devtool: isDev ? 'inline-source-map' : false,
+}
 
 const main: Configuration = {
   ...base,
-  target: "electron-main",
+  target: 'electron-main',
   entry: {
-    main: "./src/main.ts",
+    main: './src/main.ts',
   },
-};
+}
 
 const preload: Configuration = {
   ...base,
-  target: "electron-preload",
+  target: 'electron-preload',
   entry: {
-    preload: "./src/preload.ts",
+    preload: './src/preload.ts',
   },
-};
+}
 
 const renderer: Configuration = {
   ...base,
-  target: "web",
+  target: 'electron-renderer',
   entry: {
-    renderer: "./src/renderer.tsx",
+    renderer: './src/renderer.tsx',
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
+      template: './src/index.html',
       minify: !isDev,
-      inject: "body",
-      filename: "index.html",
-      scriptLoading: "blocking",
+      inject: 'body',
+      filename: 'index.html',
+      scriptLoading: 'blocking',
     }),
   ],
-};
+}
 
-export default [main, preload, renderer];
+export default [main, preload, renderer]
