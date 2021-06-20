@@ -5,9 +5,13 @@
     "moduleResolution": "Node",
     "esModuleInterop": true,
     "lib": ["DOM", "ES2020"],
-    "jsx": "react",
+    "jsx": "react-jsx",
     "strict": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "ts-node": {
     "compilerOptions": {
