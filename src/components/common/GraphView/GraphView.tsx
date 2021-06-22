@@ -39,16 +39,25 @@ const StyledAxis = styled.line`
   stroke: ${({ theme }) => theme.gray3};
 `
 
+const AxisText = styled.text`
+  fill: ${({ theme }) => theme.gray3};
+`
+
 const Point = styled.circle`
   fill: ${({ theme }) => theme.primary};
+  opacity: 0.15;
 `
 
 const SecondaryPoint = styled.circle`
-  fill: steelblue;
+  fill: ${({ theme }) => theme.white};
+  stroke: ${({ theme }) => theme.primary};
+  stroke-width: 2px;
 `
 
 const PrimaryPoint = styled.circle`
-  fill: red;
+  fill: ${({ theme }) => theme.secondary};
+  stroke: ${({ theme }) => theme.primary};
+  stroke-width: 1px;
 `
 
 // __________
@@ -62,6 +71,7 @@ const Axis: VFC = () => {
     scale({ x: 0, y: YRANGE[0] }),
     scale({ x: 0, y: YRANGE[1] }),
   ]
+  const centerPoint = scale({ x: 0, y: 0 })
   return (
     <>
       <StyledAxis
@@ -76,6 +86,27 @@ const Axis: VFC = () => {
         x2={yAxisPoints[1]?.x}
         y2={yAxisPoints[1]?.y}
       />
+      {centerPoint && (
+        <AxisText
+          transform={`translate(${centerPoint.x - 20}, ${centerPoint.y + 20})`}
+        >
+          O
+        </AxisText>
+      )}
+      <AxisText
+        transform={`translate(${xAxisPoints[1] && xAxisPoints[1].x - 20}, ${
+          xAxisPoints[1] && xAxisPoints[1].y + 20
+        })`}
+      >
+        x
+      </AxisText>
+      <AxisText
+        transform={`translate(${yAxisPoints[1] && yAxisPoints[1].x - 20}, ${
+          yAxisPoints[1] && yAxisPoints[1].y + 20
+        })`}
+      >
+        y
+      </AxisText>
     </>
   )
 }
@@ -117,7 +148,7 @@ const GraphView: VFC<GraphViewProps> = ({
         if (!p) return null
         return (
           // eslint-disable-next-line react/no-array-index-key
-          <PrimaryPoint key={`${p.x},${p.y},${i}`} r={3} cx={p.x} cy={p.y} />
+          <PrimaryPoint key={`${p.x},${p.y},${i}`} r={4} cx={p.x} cy={p.y} />
         )
       })}
     </Svg>

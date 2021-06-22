@@ -1,6 +1,8 @@
 import { VFC } from 'react'
 
 import { useCoefficients } from '@/store/coefficients'
+import { Card } from '@/components/common/Card'
+import { Button } from '@/components/common/Button'
 
 import { useShare } from '../hooks/useShare'
 
@@ -11,8 +13,8 @@ const ShareTable: VFC = () => {
   const { shares, canAppend, appendDistinctShare } = useShare(deg + 1, f)
 
   return (
-    <div>
-      <h2>Shares</h2>
+    <Card>
+      <h2>シェア</h2>
       <div>
         {shares.map((share) => (
           <div key={`${JSON.stringify(coeffs)}${share.x}`}>
@@ -20,12 +22,12 @@ const ShareTable: VFC = () => {
           </div>
         ))}
         {canAppend && (
-          <button type="button" onClick={appendDistinctShare}>
-            add
-          </button>
+          <Button type="button" onClick={appendDistinctShare}>
+            追加
+          </Button>
         )}
       </div>
-    </div>
+    </Card>
   )
 }
 

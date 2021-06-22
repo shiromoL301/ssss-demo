@@ -1,11 +1,26 @@
 import { VFC } from 'react'
+import styled from 'styled-components'
 import { useRecoilState } from 'recoil'
 
 import { GraphView } from '@/components/common/GraphView'
+import { Button } from '@/components/common/Button'
+import { Input } from '@/components/common/Input'
 import { useCoefficients } from '@/store/coefficients'
 
 import { thresholdAtom, secretAtom } from '../atoms'
 import { useShare } from '../hooks/useShare'
+
+// __________
+//
+const Foot = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
+const Label = styled.label`
+  margin-right: 12px;
+`
 
 // __________
 //
@@ -25,24 +40,30 @@ const PolynomialView: VFC = () => {
           secondaryPoints={shares}
         />
       </div>
-      <div>
+      <Foot>
         <div>
-          Secret:{' '}
-          <input
-            type="number"
-            value={secret}
-            onChange={(e) => setSecret(+e.target.value)}
-          />
+          <Label>
+            <span>秘密: </span>
+            <Input
+              type="number"
+              width="md"
+              value={secret}
+              onChange={(e) => setSecret(+e.target.value)}
+            />
+          </Label>
+          <Label>
+            <span>しきい値: </span>
+            <Input
+              type="number"
+              width="sm"
+              value={threshold}
+              min={0}
+              max={5}
+              onChange={(e) => setThreshold(+e.target.value)}
+            />
+          </Label>
         </div>
-        <div>
-          Threshold:{' '}
-          <input
-            type="number"
-            value={threshold}
-            onChange={(e) => setThreshold(+e.target.value)}
-          />
-        </div>
-        <button
+        <Button
           type="button"
           onClick={() => {
             initRandomCoeffs(threshold - 1, -20, 20)
@@ -54,9 +75,9 @@ const PolynomialView: VFC = () => {
             initShares()
           }}
         >
-          更新
-        </button>
-      </div>
+          作成
+        </Button>
+      </Foot>
     </div>
   )
 }
