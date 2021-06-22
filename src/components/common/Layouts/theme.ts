@@ -5,7 +5,8 @@ import restCss from 'ress'
 // ____________________
 //
 export const theme = {
-  primary: '#936217',
+  primary: '#282760',
+  secondary: '#fdd209',
   white: '#fff',
   TranslucentWhite: '#ffffff75',
   gray: '#eee',
@@ -16,8 +17,6 @@ export const theme = {
   black: '#4A4F52',
   red: '#ef0130',
   small: '700px',
-  board: '#F7C579',
-  boardBoarder: '#97794B',
   bg: '#F6F6FA',
   bgWhite: '#fff',
 }
@@ -40,6 +39,5 @@ export const GlobalStyle = createGlobalStyle`
 //
 declare module 'styled-components' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  // eslint-disable-next-line no-unused-vars
   interface DefaultTheme extends Theme {}
 }

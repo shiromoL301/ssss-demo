@@ -1,8 +1,23 @@
 import { VFC } from 'react'
+import styled from 'styled-components'
 import { RouteComponentProps } from 'react-router'
+
+import { PolynomialView } from './PolynomialView'
+import { ShareTable } from './ShareTable'
 
 // __________
 //
-const SharingPage: VFC<RouteComponentProps> = () => <div>SharingPage</div>
+const Container = styled.div`
+  display: flex;
+`
+
+// __________
+//
+const SharingPage: VFC<RouteComponentProps> = () => (
+  <Container>
+    <PolynomialView />
+    <ShareTable />
+  </Container>
+)
 
 export default SharingPage
