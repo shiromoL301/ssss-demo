@@ -104,15 +104,21 @@ const GraphView: VFC<GraphViewProps> = ({
       {points.map((p) => (
         <Point key={`${p.x},${p.y}`} r={1} cx={p.x} cy={p.y} />
       ))}
-      {secondaryPoints?.map((point) => {
+      {secondaryPoints?.map((point, i) => {
         const p = scale(point)
         if (!p) return null
-        return <SecondaryPoint key={`${p.x},${p.y}`} r={3} cx={p.x} cy={p.y} />
+        return (
+          // eslint-disable-next-line react/no-array-index-key
+          <SecondaryPoint key={`${p.x},${p.y},${i}`} r={3} cx={p.x} cy={p.y} />
+        )
       })}
-      {primaryPoints?.map((point) => {
+      {primaryPoints?.map((point, i) => {
         const p = scale(point)
         if (!p) return null
-        return <PrimaryPoint key={`${p.x},${p.y}`} r={3} cx={p.x} cy={p.y} />
+        return (
+          // eslint-disable-next-line react/no-array-index-key
+          <PrimaryPoint key={`${p.x},${p.y},${i}`} r={3} cx={p.x} cy={p.y} />
+        )
       })}
     </Svg>
   )
