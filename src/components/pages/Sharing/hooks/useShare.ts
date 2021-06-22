@@ -7,8 +7,8 @@ import { sharesAtom } from '../atoms'
 
 // __________
 //
-const MIN = -4
-const MAX = 10
+const MIN = -3
+const MAX = 9
 const SHARE_MAX = 10
 
 function getRandomZ(min: number, max: number) {
