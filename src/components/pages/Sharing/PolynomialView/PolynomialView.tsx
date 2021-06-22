@@ -5,6 +5,7 @@ import { GraphView } from '@/components/common/GraphView'
 import { useCoefficients } from '@/store/coefficients'
 
 import { thresholdAtom, secretAtom } from '../atoms'
+import { useShare } from '../hooks/useShare'
 
 // __________
 //
@@ -12,12 +13,17 @@ const PolynomialView: VFC = () => {
   const [threshold, setThreshold] = useRecoilState(thresholdAtom)
   const [secret, setSecret] = useRecoilState(secretAtom)
   const { coeffs, setCoeffs, f, initRandomCoeffs } = useCoefficients()
+  const { shares, initShares } = useShare(threshold, f)
 
   return (
     <div>
       <div>y={JSON.stringify(coeffs)}</div>
       <div>
-        <GraphView f={f} />
+        <GraphView
+          f={f}
+          primaryPoints={[{ x: 0, y: secret }]}
+          secondaryPoints={shares}
+        />
       </div>
       <div>
         <div>
@@ -45,6 +51,7 @@ const PolynomialView: VFC = () => {
               cs[0] = secret
               return cs
             })
+            initShares()
           }}
         >
           更新

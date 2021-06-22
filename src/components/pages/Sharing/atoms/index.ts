@@ -4,7 +4,7 @@
  */
 import { atom } from 'recoil'
 
-import type { Threshold, Secret } from '@/types'
+import type { Threshold, Secret, Share } from '@/types'
 
 // __________
 //
@@ -16,4 +16,9 @@ export const thresholdAtom = atom<Threshold>({
 export const secretAtom = atom<Secret>({
   key: 'SHARING::secret',
   default: 123,
+})
+
+export const sharesAtom = atom<Share[]>({
+  key: 'SHARING::shares',
+  default: [],
 })

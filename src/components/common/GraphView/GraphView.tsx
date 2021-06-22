@@ -3,13 +3,15 @@ import styled from 'styled-components'
 
 // __________
 //
-export type GraphViewProps = {
-  f: (x: number) => number
-}
-
 export type Coordinates = {
   x: number
   y: number
+}
+
+export type GraphViewProps = {
+  f: (x: number) => number
+  primaryPoints?: Coordinates[]
+  secondaryPoints?: Coordinates[]
 }
 
 const WIDTH = 500
@@ -41,6 +43,14 @@ const Point = styled.circle`
   fill: ${({ theme }) => theme.primary};
 `
 
+const SecondaryPoint = styled.circle`
+  fill: steelblue;
+`
+
+const PrimaryPoint = styled.circle`
+  fill: red;
+`
+
 // __________
 //
 const Axis: VFC = () => {
@@ -70,7 +80,11 @@ const Axis: VFC = () => {
   )
 }
 
-const GraphView: VFC<GraphViewProps> = ({ f }) => {
+const GraphView: VFC<GraphViewProps> = ({
+  f,
+  primaryPoints,
+  secondaryPoints,
+}) => {
   const points = useMemo(() => {
     const tick = 100
     const num = (XRANGE[1] - XRANGE[0]) * tick
@@ -90,6 +104,16 @@ const GraphView: VFC<GraphViewProps> = ({ f }) => {
       {points.map((p) => (
         <Point key={`${p.x},${p.y}`} r={1} cx={p.x} cy={p.y} />
       ))}
+      {secondaryPoints?.map((point) => {
+        const p = scale(point)
+        if (!p) return null
+        return <SecondaryPoint key={`${p.x},${p.y}`} r={3} cx={p.x} cy={p.y} />
+      })}
+      {primaryPoints?.map((point) => {
+        const p = scale(point)
+        if (!p) return null
+        return <PrimaryPoint key={`${p.x},${p.y}`} r={3} cx={p.x} cy={p.y} />
+      })}
     </Svg>
   )
 }
