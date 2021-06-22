@@ -3,10 +3,8 @@ import styled from 'styled-components'
 
 // __________
 //
-export type Coefficients = number[]
-
 export type GraphViewProps = {
-  coefficients: Coefficients
+  f: (x: number) => number
 }
 
 export type Coordinates = {
@@ -16,8 +14,8 @@ export type Coordinates = {
 
 const WIDTH = 500
 const HEIGHT = 400
-const XRANGE = [-50, 450]
-const YRANGE = [-50, 450]
+const XRANGE = [-4, 10]
+const YRANGE = [-400, 500]
 
 function scale(p: Coordinates): Coordinates | null {
   if (XRANGE[0] > p.x || p.x > XRANGE[1]) return null
@@ -29,11 +27,6 @@ function scale(p: Coordinates): Coordinates | null {
     x,
     y,
   }
-}
-
-function createMapping(coeffs: Coefficients) {
-  return (x: number) =>
-    coeffs.reduce((prev, cur, idx) => prev + cur * x ** idx, 0)
 }
 
 const Svg = styled.svg`
@@ -77,12 +70,10 @@ const Axis: VFC = () => {
   )
 }
 
-const GraphView: VFC<GraphViewProps> = ({ coefficients }) => {
-  const f = useMemo(() => createMapping(coefficients), [coefficients])
-
+const GraphView: VFC<GraphViewProps> = ({ f }) => {
   const points = useMemo(() => {
-    const tick = 10
-    const num = Math.max(WIDTH, HEIGHT) * tick
+    const tick = 100
+    const num = (XRANGE[1] - XRANGE[0]) * tick
     const result = []
     for (let x = XRANGE[0]; x < num; x += 1 / tick) {
       const p = scale({ x, y: f(x) })
@@ -91,7 +82,7 @@ const GraphView: VFC<GraphViewProps> = ({ coefficients }) => {
       }
     }
     return result
-  }, [f, coefficients])
+  }, [f])
 
   return (
     <Svg width={WIDTH} height={HEIGHT} viewBox={`0 0 ${WIDTH} ${HEIGHT}`}>

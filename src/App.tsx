@@ -1,6 +1,7 @@
 import { VFC } from 'react'
 import { Route, Switch } from 'react-router'
 import { HashRouter } from 'react-router-dom'
+import { RecoilRoot } from 'recoil'
 
 import { MainLayout } from '@/components/common/Layouts'
 import { pages } from '@/components/pages'
@@ -9,12 +10,14 @@ import { pages } from '@/components/pages'
 //
 export const App: VFC = () => (
   <HashRouter>
-    <MainLayout>
-      <Switch>
-        {pages.map((page) => (
-          <Route key={page.title} {...page} />
-        ))}
-      </Switch>
-    </MainLayout>
+    <RecoilRoot>
+      <MainLayout>
+        <Switch>
+          {pages.map((page) => (
+            <Route key={page.title} {...page} />
+          ))}
+        </Switch>
+      </MainLayout>
+    </RecoilRoot>
   </HashRouter>
 )
