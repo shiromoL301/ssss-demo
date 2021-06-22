@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil'
 import { GraphView } from '@/components/common/GraphView'
 import { Button } from '@/components/common/Button'
 import { Input } from '@/components/common/Input'
+import { Polynomial } from '@/components/common/Polynomial'
 import { useCoefficients } from '@/store/coefficients'
 
 import { thresholdAtom, secretAtom } from '../atoms'
@@ -12,6 +13,16 @@ import { useShare } from '../hooks/useShare'
 
 // __________
 //
+const MainContainer = styled.div`
+  position: relative;
+`
+
+const PolyContainer = styled.div`
+  position: absolute;
+  right: 10px;
+  top: 10px;
+`
+
 const Foot = styled.div`
   display: flex;
   justify-content: space-between;
@@ -32,14 +43,16 @@ const PolynomialView: VFC = () => {
 
   return (
     <div>
-      <div>y={JSON.stringify(coeffs)}</div>
-      <div>
+      <MainContainer>
+        <PolyContainer>
+          <Polynomial coeffs={coeffs} />
+        </PolyContainer>
         <GraphView
           f={f}
           primaryPoints={[{ x: 0, y: secret }]}
           secondaryPoints={shares}
         />
-      </div>
+      </MainContainer>
       <Foot>
         <div>
           <Label>
