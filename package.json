@@ -7,8 +7,35 @@
     "start": "run-s clean build serve",
     "clean": "rimraf dist",
     "build": "cross-env NODE_ENV=\"development\" webpack --progress",
+    "build:prod": "cross-env NODE_ENV=\"production\" webpack --progress",
     "serve": "electron .",
-    "fix": "eslint --fix --ext .ts,.tsx ./src"
+    "fix": "eslint --fix --ext .ts,.tsx ./src",
+    "buildapp:win": "yarn build:prod && electron-builder --win --x64",
+    "buildapp:mac": "yarn build:prod && electron-builder --mac --x64"
+  },
+  "build": {
+    "appId": "slab-ssss-demo",
+    "copyright": "Copyright © 2021 城本研究室",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "dist/**/*"
+    ],
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "icon": "assets/logo_512.png"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/logo_512.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   },
   "devDependencies": {
     "@types/node": "^15.12.4",
@@ -22,6 +49,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^5.2.6",
     "electron": "^13.1.2",
+    "electron-builder": "^22.11.7",
     "eslint": "^7.29.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
