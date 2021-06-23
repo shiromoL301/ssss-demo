@@ -10,8 +10,8 @@ const createWindow = () => {
       preload: path.join(__dirname, 'preload.js'),
     },
     width: 800,
-    height: 500,
-    resizable: false
+    height: 600,
+    resizable: false,
   })
 
   if (process.env.NODE_ENV === 'development') {
