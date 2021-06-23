@@ -11,6 +11,7 @@ const createWindow = () => {
     },
     width: 800,
     height: 500,
+    resizable: false
   })
 
   if (process.env.NODE_ENV === 'development') {
