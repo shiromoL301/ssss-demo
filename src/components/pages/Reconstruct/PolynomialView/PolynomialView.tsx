@@ -53,7 +53,7 @@ const PolynomialView: VFC = () => {
         />
       </div>
       <SecretContainer>
-        秘密値: {f ? <SecretValue>{f(0)}</SecretValue> : 'ERROR'}
+        秘密値: {f ? <SecretValue>{Math.round(f(0))}</SecretValue> : 'ERROR'}
       </SecretContainer>
     </div>
   )
