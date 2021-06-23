@@ -1,8 +1,21 @@
 import { VFC, useState, useEffect, useCallback } from 'react'
+import styled from 'styled-components'
 
 import { Share } from '@/types'
+import { Card } from '@/components/common/Card'
+import { Input } from '@/components/common/Input'
 
 import { useReconstruct } from '../hooks/useReconstruct'
+
+// __________
+//
+const ShareComponent = styled.div`
+  display: flex;
+`
+
+const ShareContainer = styled.div`
+  margin: 12px 0px;
+`
 
 // __________
 //
@@ -43,34 +56,39 @@ const ShareTable: VFC = () => {
   )
 
   return (
-    <div>
-      <h2>Shares</h2>
+    <Card>
+      <h2>シェア</h2>
       <div>
+        <label>
+          <span>しきい値: </span>
+          <Input
+            type="number"
+            width="sm"
+            value={threshold}
+            onChange={(e) => setThreshold(+e.target.value)}
+          />
+        </label>
+      </div>
+      <ShareContainer>
         {tmpShares.map((share, i) => (
           // eslint-disable-next-line react/no-array-index-key
-          <div key={`${threshold}-${share.x}-${i}`}>
-            <input
+          <ShareComponent key={`${threshold}-${i}`}>
+            <Input
               type="number"
+              width="md"
               value={share.x}
               onChange={(e) => updateTmpShares(i, { x: +e.target.value })}
             />
-            <input
+            <Input
               type="number"
+              width="lg"
               value={share.y}
               onChange={(e) => updateTmpShares(i, { y: +e.target.value })}
             />
-          </div>
+          </ShareComponent>
         ))}
-      </div>
-      <div>
-        Threshold:{' '}
-        <input
-          type="number"
-          value={threshold}
-          onChange={(e) => setThreshold(+e.target.value)}
-        />
-      </div>
-    </div>
+      </ShareContainer>
+    </Card>
   )
 }
 

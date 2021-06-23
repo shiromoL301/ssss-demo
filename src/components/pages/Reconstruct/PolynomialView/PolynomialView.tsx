@@ -1,8 +1,20 @@
 import { VFC, useMemo } from 'react'
+import styled from 'styled-components'
 
 import { GraphView } from '@/components/common/GraphView'
 
 import { useReconstruct } from '../hooks/useReconstruct'
+
+// __________
+//
+const SecretContainer = styled.div`
+  font-size: 1.5rem;
+`
+
+const SecretValue = styled.span`
+  font-weight: bold;
+  color: ${({ theme }) => theme.primary};
+`
 
 // __________
 //
@@ -40,7 +52,9 @@ const PolynomialView: VFC = () => {
           secondaryPoints={shares}
         />
       </div>
-      <div>Secret: {f ? f(0) : 'ERROR'}</div>
+      <SecretContainer>
+        秘密値: {f ? <SecretValue>{f(0)}</SecretValue> : 'ERROR'}
+      </SecretContainer>
     </div>
   )
 }

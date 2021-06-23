@@ -9,6 +9,8 @@ const createWindow = () => {
       worldSafeExecuteJavaScript: true,
       preload: path.join(__dirname, 'preload.js'),
     },
+    width: 800,
+    height: 500,
   })
 
   if (process.env.NODE_ENV === 'development') {
