@@ -56,7 +56,7 @@ const PolynomialView: VFC = () => {
       <Foot>
         <div>
           <Label>
-            <span>秘密: </span>
+            <span>秘密値: </span>
             <Input
               type="number"
               width="md"
