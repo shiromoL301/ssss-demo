@@ -20,7 +20,8 @@
       "output": "dist"
     },
     "files": [
-      "dist/**/*"
+      "dist/**/*",
+      "assets/**/*"
     ],
     "mac": {
       "target": [
