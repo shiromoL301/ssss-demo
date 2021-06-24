@@ -9,6 +9,13 @@ import { useReconstruct } from '../hooks/useReconstruct'
 
 // __________
 //
+type InputShare = {
+  x: string | number
+  y: string | number
+}
+
+// __________
+//
 const ShareComponent = styled.div`
   display: flex;
 `
@@ -21,7 +28,7 @@ const ShareContainer = styled.div`
 //
 const ShareTable: VFC = () => {
   const { shares, setShares, threshold, setThreshold } = useReconstruct()
-  const [tmpShares, setTmpShares] = useState<Share[]>(shares)
+  const [tmpShares, setTmpShares] = useState<InputShare[]>(shares)
 
   useEffect(() => {
     if (tmpShares.length === threshold) return
@@ -38,14 +45,24 @@ const ShareTable: VFC = () => {
   }, [threshold, tmpShares])
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setShares(tmpShares)
+    const id = setTimeout(() => {
+      const ss: Share[] = []
+      tmpShares.forEach(({ x, y }) => {
+        if (String(x).match(/^[+-]?\d+$/) && String(y).match(/^[+-]?\d+$/)) {
+          ss.push({
+            x: +x,
+            y: +y,
+          })
+        }
+      })
+
+      setShares(ss)
     }, 1000)
     return () => clearInterval(id)
   }, [tmpShares])
 
   const updateTmpShares = useCallback(
-    (index: number, inject: Partial<Share>) => {
+    (index: number, inject: Partial<InputShare>) => {
       setTmpShares((prev) => {
         const newShares = [...prev]
         newShares[index] = { ...newShares[index], ...inject }
@@ -74,16 +91,18 @@ const ShareTable: VFC = () => {
           // eslint-disable-next-line react/no-array-index-key
           <ShareComponent key={`${threshold}-${i}`}>
             <Input
-              type="number"
+              type="text"
               width="md"
               value={share.x}
-              onChange={(e) => updateTmpShares(i, { x: +e.target.value })}
+              onChange={(e) => {
+                updateTmpShares(i, { x: e.target.value })
+              }}
             />
             <Input
-              type="number"
+              type="text"
               width="lg"
               value={share.y}
-              onChange={(e) => updateTmpShares(i, { y: +e.target.value })}
+              onChange={(e) => updateTmpShares(i, { y: e.target.value })}
             />
           </ShareComponent>
         ))}
