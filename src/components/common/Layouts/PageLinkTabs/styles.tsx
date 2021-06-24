@@ -1,9 +1,8 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 
 // __________
 //
-export const LinkTab = styled(Link)<{ isActive?: boolean }>`
+export const LinkTab = styled.a<{ isActive?: boolean }>`
   padding: 6px 12px;
   border: 1px solid
     ${({ isActive, theme }) => (isActive ? theme.primary : theme.gray2)};
@@ -17,5 +16,11 @@ export const LinkTab = styled(Link)<{ isActive?: boolean }>`
 
 export const LinkTabs = styled.div`
   display: flex;
+  width: ${({ theme }) => theme.maxWidth};
+  margin-inline: auto;
+`
+
+export const LinkTabsContainer = styled.div`
   background-color: ${({ theme }) => theme.gray2};
+  padding-top: 4px;
 `

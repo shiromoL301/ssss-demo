@@ -8,7 +8,9 @@ import { theme, GlobalStyle } from './theme'
 // __________
 //
 const Main = styled.main`
-  padding: 1rem;
+  padding: 24px;
+  width: 800px;
+  margin-inline: auto;
 `
 
 const MainLayout: FC = ({ children }) => (

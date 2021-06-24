@@ -4,19 +4,38 @@
     "module": "ES2020",
     "moduleResolution": "Node",
     "esModuleInterop": true,
-    "lib": ["DOM", "ES2020"],
-    "jsx": "react-jsx",
+    "lib": [
+      "DOM",
+      "ES2020"
+    ],
+    "jsx": "preserve",
     "strict": true,
     "sourceMap": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
-    }
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "allowJs": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true
   },
   "ts-node": {
     "compilerOptions": {
       "target": "ES2015",
       "module": "CommonJS"
     }
-  }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

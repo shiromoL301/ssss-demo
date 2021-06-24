@@ -1,6 +1,5 @@
 import { VFC } from 'react'
 import styled from 'styled-components'
-import { RouteComponentProps } from 'react-router'
 
 import { PolynomialView } from './PolynomialView'
 import { ShareTable } from './ShareTable'
@@ -13,7 +12,7 @@ const Container = styled.div`
 
 // __________
 //
-const SharingPage: VFC<RouteComponentProps> = () => (
+const SharingPage: VFC = () => (
   <Container>
     <PolynomialView />
     <ShareTable />

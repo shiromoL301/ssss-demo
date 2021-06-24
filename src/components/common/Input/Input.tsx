@@ -14,7 +14,7 @@ export const Input = styled.input<{ width: Size }>`
     switch (width) {
       case 'sm':
         return css`
-          width: 32px;
+          width: 36px;
         `
       case 'lg':
         return css`

@@ -1,9 +1,10 @@
 import { VFC } from 'react'
-import { useLocation } from 'react-router'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 import { PageTitle, findPagePath } from '@/components/pages'
 
-import { LinkTab, LinkTabs } from './styles'
+import { LinkTab, LinkTabs, LinkTabsContainer } from './styles'
 
 // __________
 //
@@ -39,16 +40,18 @@ const links: Links[] = [
 // __________
 //
 const PageLinkTabs: VFC = () => {
-  const { pathname } = useLocation()
+  const { pathname } = useRouter()
 
   return (
-    <LinkTabs>
-      {links.map(({ title, path, name }) => (
-        <LinkTab key={title} to={path} isActive={path === pathname}>
-          {name}
-        </LinkTab>
-      ))}
-    </LinkTabs>
+    <LinkTabsContainer>
+      <LinkTabs>
+        {links.map(({ title, path, name }) => (
+          <Link key={title} href={path}>
+            <LinkTab isActive={path === pathname}>{name}</LinkTab>
+          </Link>
+        ))}
+      </LinkTabs>
+    </LinkTabsContainer>
   )
 }
 

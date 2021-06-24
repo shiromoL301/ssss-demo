@@ -1,13 +1,11 @@
 import { VFC } from 'react'
 import styled from 'styled-components'
 
-import Logo from '../../../../../assets/logo.svg'
-
 // __________
 //
 const LogoWrapper = styled.div`
   margin-right: 12px;
-  img {
+  svg {
     height: 64px;
     width: 64px;
   }
@@ -26,10 +24,44 @@ const Foot = styled.div`
 
 // __________
 //
+const Logo: VFC = () => (
+  <svg
+    width="512"
+    height="512"
+    viewBox="0 0 160 160"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect x="5" y="5" width="150" height="150" rx="10" fill="#282760" />
+    <path
+      d="M 20 80 C 40 10, 60 10, 80 80 S 120 150, 140 80"
+      stroke="white"
+      strokeWidth="10"
+      fill="transparent"
+    />
+    <circle
+      r="10"
+      cx="130"
+      cy="110"
+      stroke="white"
+      strokeWidth="3"
+      fill="#282760"
+    />
+    <circle
+      r="10"
+      cx="80"
+      cy="80"
+      stroke="white"
+      strokeWidth="3"
+      fill="#282760"
+    />
+    <circle r="15" cx="30" cy="55" fill="#fdd209" />
+  </svg>
+)
+
 const AppInfo: VFC = () => (
   <Container>
     <LogoWrapper>
-      <img alt="app" src={Logo} />
+      <Logo />
     </LogoWrapper>
     <div>
       <h2>SSSS Demo</h2>

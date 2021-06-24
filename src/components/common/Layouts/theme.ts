@@ -19,6 +19,7 @@ export const theme = {
   small: '700px',
   bg: '#F6F6FA',
   bgWhite: '#fff',
+  maxWidth: '800px',
 }
 
 type Theme = typeof theme

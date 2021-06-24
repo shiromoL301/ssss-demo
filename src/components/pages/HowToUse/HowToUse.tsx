@@ -1,6 +1,5 @@
 import { VFC } from 'react'
 import styled from 'styled-components'
-import { RouteComponentProps } from 'react-router'
 
 // __________
 //
@@ -12,7 +11,7 @@ const Section = styled.section`
 
 // __________
 //
-const HowToUsePage: VFC<RouteComponentProps> = () => (
+const HowToUsePage: VFC = () => (
   <div>
     <Section>
       <h2>分散</h2>
