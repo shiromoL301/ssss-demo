@@ -1,12 +1,17 @@
+const basePath = process.env.NODE_ENV === 'production' ? '/ssss-demo' : ''
+
 module.exports = {
   async redirects() {
     return [
       {
         source: '/',
-        destination: '/sharing',
+        destination: `${basePath}/sharing`,
         permanent: true,
       },
     ]
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/ssss-demo' : '',
+  basePath,
+  publicRuntimeConfig: {
+    basePath,
+  },
 }

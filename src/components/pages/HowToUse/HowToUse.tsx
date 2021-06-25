@@ -1,4 +1,5 @@
 import { VFC } from 'react'
+import getConfig from 'next/config'
 import styled from 'styled-components'
 
 import sharingPic from './img/sharing.png'
@@ -23,6 +24,10 @@ const ImgWrapper = styled.div`
   }
 `
 
+const {
+  publicRuntimeConfig: { basePath },
+} = getConfig()
+
 // __________
 //
 const HowToUsePage: VFC = () => (
@@ -30,7 +35,7 @@ const HowToUsePage: VFC = () => (
     <Section>
       <h2>分散</h2>
       <ImgWrapper>
-        <img src={sharingPic.src} alt="sharing" />
+        <img src={basePath + sharingPic.src} alt="sharing" />
       </ImgWrapper>
       <div>
         <p>
@@ -46,7 +51,7 @@ const HowToUsePage: VFC = () => (
     <Section>
       <h2>復元</h2>
       <ImgWrapper>
-        <img src={reconstructionPic.src} alt="reconstruction" />
+        <img src={basePath + reconstructionPic.src} alt="reconstruction" />
       </ImgWrapper>
       <div>
         <p>①: シェアのしきい値とシェアを入力します。</p>
