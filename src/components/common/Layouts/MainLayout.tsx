@@ -9,8 +9,12 @@ import { theme, GlobalStyle } from './theme'
 //
 const Main = styled.main`
   padding: 24px;
-  width: 800px;
+  max-width: 800px;
   margin-inline: auto;
+
+  @media screen and (max-width: 800px) {
+    padding: 24px 12px;
+  }
 `
 
 const MainLayout: FC = ({ children }) => (

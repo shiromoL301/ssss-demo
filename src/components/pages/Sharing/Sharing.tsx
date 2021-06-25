@@ -8,14 +8,26 @@ import { ShareTable } from './ShareTable'
 //
 const Container = styled.div`
   display: flex;
+  flex-wrap: wrap;
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+    & > div:not(:first-child) {
+      margin-top: 1rem;
+    }
+  }
 `
 
 // __________
 //
 const SharingPage: VFC = () => (
   <Container>
-    <PolynomialView />
-    <ShareTable />
+    <div>
+      <PolynomialView />
+    </div>
+    <div>
+      <ShareTable />
+    </div>
   </Container>
 )
 

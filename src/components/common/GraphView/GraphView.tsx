@@ -33,6 +33,9 @@ function scale(p: Coordinates): Coordinates | null {
 
 const Svg = styled.svg`
   background-color: ${({ theme }) => theme.bgWhite};
+  max-width: ${WIDTH}px;
+  max-height: ${HEIGHT}px;
+  width: 90vw;
 `
 
 const StyledAxis = styled.line`
@@ -52,12 +55,24 @@ const SecondaryPoint = styled.circle`
   fill: ${({ theme }) => theme.white};
   stroke: ${({ theme }) => theme.primary};
   stroke-width: 2px;
+  r: 3;
+  &:hover {
+    cursor: pointer;
+    r: 6px;
+    transition: 0.2s;
+  }
 `
 
 const PrimaryPoint = styled.circle`
   fill: ${({ theme }) => theme.secondary};
   stroke: ${({ theme }) => theme.primary};
   stroke-width: 1px;
+  r: 4;
+  &:hover {
+    cursor: pointer;
+    r: 7px;
+    transition: 0.2s;
+  }
 `
 
 // __________
@@ -130,7 +145,7 @@ const GraphView: VFC<GraphViewProps> = ({
   }, [f])
 
   return (
-    <Svg width={WIDTH} height={HEIGHT} viewBox={`0 0 ${WIDTH} ${HEIGHT}`}>
+    <Svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`}>
       <Axis />
       {points.map((p) => (
         <Point key={`${p.x},${p.y}`} r={1} cx={p.x} cy={p.y} />

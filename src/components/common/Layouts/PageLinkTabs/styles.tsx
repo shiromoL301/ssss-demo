@@ -16,7 +16,7 @@ export const LinkTab = styled.a<{ isActive?: boolean }>`
 
 export const LinkTabs = styled.div`
   display: flex;
-  width: ${({ theme }) => theme.maxWidth};
+  max-width: ${({ theme }) => theme.maxWidth};
   margin-inline: auto;
 `
 

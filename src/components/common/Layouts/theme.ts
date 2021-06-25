@@ -33,7 +33,12 @@ export const GlobalStyle = createGlobalStyle`
     font-family: Lato, Noto Sans JP, 游ゴシック Medium, 游ゴシック体,
       Yu Gothic Medium, YuGothic, ヒラギノ角ゴ ProN, Hiragino Kaku Gothic ProN,
       メイリオ, Meiryo, ＭＳ Ｐゴシック, MS PGothic, sans-serif; 
+
+    @media screen and (max-width: 800px) {
+      font-size: 11px;
+    }
   }
+
 `
 
 // ____________________
