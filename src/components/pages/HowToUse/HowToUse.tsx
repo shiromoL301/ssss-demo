@@ -1,5 +1,4 @@
 import { VFC } from 'react'
-import Image from 'next/image'
 import styled from 'styled-components'
 
 import sharingPic from './img/sharing.png'
@@ -18,6 +17,10 @@ const ImgWrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.gray4};
   border-radius: 5px;
   overflow: hidden;
+
+  img {
+    max-width: 400px;
+  }
 `
 
 // __________
@@ -27,7 +30,7 @@ const HowToUsePage: VFC = () => (
     <Section>
       <h2>分散</h2>
       <ImgWrapper>
-        <Image src={sharingPic} alt="sharing" />
+        <img src={sharingPic.src} alt="sharing" />
       </ImgWrapper>
       <div>
         <p>
@@ -43,7 +46,7 @@ const HowToUsePage: VFC = () => (
     <Section>
       <h2>復元</h2>
       <ImgWrapper>
-        <Image src={reconstructionPic} alt="reconstruction" />
+        <img src={reconstructionPic.src} alt="reconstruction" />
       </ImgWrapper>
       <div>
         <p>①: シェアのしきい値とシェアを入力します。</p>
